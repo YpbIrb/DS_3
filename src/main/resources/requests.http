@@ -1,0 +1,122 @@
+# Заполнение базы данных объектами node из документа
+POST http://localhost:8100/osm/node/download_xml
+
+
+###
+
+# Создание объекта node
+POST http://localhost:8100/osm/node/create
+Content-Type: application/json
+Accept: application/json
+
+{
+  "body": {
+    "id": "1",
+    "version": "30",
+    "timestamp": "2015-01-01T11:00:00Z",
+    "uid": "333",
+    "user_name": "user1",
+    "changeset": "8473234",
+    "lat": "54.889147",
+    "lon": "83.073432",
+    "tags": [
+      {
+        "k": "place",
+        "v": "city"
+      },
+      {
+        "k": "population",
+        "v": "1547910"
+      },
+      {
+        "k": "population.date",
+        "v": "2014-01-01T11:00:00Z"
+      }
+    ]
+  }
+}
+
+###
+
+# Создание объекта node
+POST http://localhost:8100/osm/node/create
+Content-Type: application/json
+Accept: application/json
+
+{
+"body": {
+"id": "2",
+"version": "1",
+"timestamp": "2015-01-01T11:00:00Z",
+"uid": "333",
+"user_name": "user1",
+"changeset": "8473234",
+"lat": "54.842963",
+"lon": "83.0910516",
+"tags": [
+{
+"k": "highway",
+"v": "traffic_sign"
+}
+]
+}
+}
+
+###
+
+# Получение объекта node по id
+GET http://localhost:8100/osm/node/get/1
+Accept: application/json
+
+###
+
+# Обновление объекта node по id
+POST http://localhost:8100/osm/node/update/1
+Content-Type: application/json
+Accept: application/json
+
+{
+  "body": {
+    "version": "36",
+    "timestamp": "2020-01-01T11:00:00Z",
+    "uid": "333",
+    "user_name": "user1",
+    "changeset": "8473234",
+    "lat": "54.889147",
+    "lon": "83.073432",
+    "tags": [
+      {
+        "k": "place",
+        "v": "city"
+      },
+      {
+        "k": "population",
+        "v": "1547910"
+      },
+      {
+        "k": "population.date",
+        "v": "2014-01-01T11:00:00Z"
+      }
+    ]
+  }
+}
+
+
+###
+
+# Удаление объекта node по id
+DELETE http://localhost:8100/osm/node/delete/1
+
+###
+
+# Получение объектов node в заданном радиусе от точки. В данном запросе вернется только одна нода
+GET http://localhost:8100/osm/node/find_near?lon=83.07344&lat=54.88915&radius=100
+Accept: application/json
+
+###
+
+# Получение объектов node в заданном радиусе от точки. В данном запросе вернется пустой список
+GET http://localhost:8100/osm/node/find_near?lon=83.07344&lat=54.83&radius=100
+Accept: application/json
+
+###
